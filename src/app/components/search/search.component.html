@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="row">
+
+    <div class="col-md-6">
+      <label class="font-italic font-weight-bold" for="termino">Buscar artistas o género musical</label>
+
+      <input class="form-control" type="text" placeholder="Buscar..."
+      class="form-control"
+      (keyup)="buscarArtistas()"
+      [(ngModel)]="termino">
+    </div>
+  </div>
+
+  <div class="row">
+      <div class="col-md-12" *ngIf="termino.length > 1">
+          <h1 class="text-capitalize">{{ termino }}</h1>
+          <hr>      
+          <div class="row">
+            <div *ngFor="let artista_local of s_spottify.artistas" 
+                  class="col-md-3 text-center puntero"
+                  [routerLink]="['/artist', artista_local.id]">
+              <img [src]="artista_local.images | sinfoto" class="img-thumbnail">
+              <p> {{ artista_local.name }} </p>
+            </div>    
+          </div>
+        </div>
+  </div>  
+</div>

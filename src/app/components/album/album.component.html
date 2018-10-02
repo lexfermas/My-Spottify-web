@@ -1,0 +1,48 @@
+ <div class="container top30 margin-bottom">
+   <div class="card-header margin-bottom">
+     <button [routerLink]="['/artist', idArtista2]" type="button" 
+             class="btn btn-outline-danger">
+       Regresar
+     </button> <br><br>
+      <h3 class="font-italic center">{{albumsDelArtista[0].artists[0].name}}</h3>
+   </div>
+    <!-- acordion -->
+    <div class="accordion col-md-9" id="acordion" role="tablist">
+      <div class="row top30 card margin-bottom" *ngFor="let album_local of albumsDelArtista, let i= index">
+        <div class="card-header color-collapse margin-bottom" role="tab" id="heading1">
+            <span class="badge badge-success">{{i+1}}</span>
+          <a href="#{{i}}" class="btn btn-outline-success" style="margin-left:5px" data-toggle="collapse" data-parent="#acordion">
+           {{album_local.name}}
+          </a>
+        </div>
+        <div id="{{i}}" class="panel-collapse collapse in">
+          <div class="card-body color-collapse margin-bottom">
+            <div class="col-md-12 table-responsive">
+              <table class="table table-dark">
+                <thead>
+                  <tr>
+                    <th>Foto</th>
+                    <th>Nombre</th>
+                    <th>Escuchar</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <img [src]="album_local.images | sinfoto" class="img-50">
+                    </td>
+                    <td>{{ album_local.name }}</td>
+                    <td>
+                      <iframe [src]="album_local.uri | domseguro:'https://open.spotify.com/embed?uri='" width="400" height="280" frameborder="0"
+                        allowtransparency="true" allow="encrypted-media">
+                      </iframe>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

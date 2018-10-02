@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-10">
+      <label class="font-italic font-weight-bold" for="termino">Buscar album o género musical</label>
+      <input class="form-control" type="text" placeholder="Buscar..." class="form-control" (keyup)="buscarAlbums()" [(ngModel)]="termino">
+      <h1 class="text-capitalize">{{ termino }}</h1>
+      <hr>
+    </div>
+     <!-- acordion -->
+     <div class="accordion col-md-10" id="acordion" role="tablist">
+        <div class="row top30 card margin-bottom" *ngFor="let album_local of s_spoty.album, let i= index">
+            <span style="font-size: 20px" class="badge badge-success">{{i+1}}. {{album_local.artists[0].name}}</span>
+          <div class="card-header color-collapse margin-bottom" role="tab" id="heading1">
+            
+            <img [src]="album_local.images | sinfoto" height="200px" width="200px">
+            <br>
+            <br>
+            <a href="#{{i}}" class="btn btn-outline-success" style="margin-left:5px" data-toggle="collapse" data-parent="#acordion">
+              {{album_local.name}}
+            </a>
+
+            <div id="{{i}}" class=" marginAccordion panel-collapse collapse in">
+              <div class="div1Acc card-body color-collapse margin-bottom">
+                <div class="col-md-12 table-responsive">
+                  <table class="table table-dark">
+                    <thead>
+                      <tr>
+                        <th>Foto</th>
+                        <th>Nombre</th>
+                        <th>Escuchar</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>
+                          <img [src]="album_local.images | sinfoto" class="img-50">
+                        </td>
+                        <td>{{ album_local.name }}</td>
+                        <td>
+                          <iframe [src]="album_local.uri | domseguro:'https://open.spotify.com/embed?uri='" width="400" height="280" frameborder="0"
+                            allowtransparency="true" allow="encrypted-media">
+                          </iframe>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
